@@ -1,21 +1,19 @@
 $(function(){
-	$('.floatingContainer').hover(function(){
-	  //$('.subActionButton').addClass('display');
-	}, function(){
-	  $('.subActionButton').removeClass('display');
-	  $('.actionButton').removeClass('open');
-	});
-	$('.subActionButton').hover(function(){
-	  $(this).find('.floatingText').addClass('show');
-	}, function(){
-	  $(this).find('.floatingText').removeClass('show');
+	var click = false;
+
+	$('.actionButton').on('click', function(){
+		if(click == false){
+			$(this).addClass('open');
+		  	$(this).find('.floatingText').addClass('show');
+		  	$('.subActionButton').addClass('display');
+		  	$('.subActionButton').find('.floatingText').addClass('show');
+		  	click = true;
+		}else if(click == true){
+			$('.subActionButton').removeClass('display');
+	  		$('.actionButton').removeClass('open');
+	  		click = false;
+	  		$(this).find('.floatingText').removeClass('show');
+		}
 	});
 
-	$('.actionButton').hover(function(){
-	  $(this).addClass('open');
-	  $(this).find('.floatingText').addClass('show');
-	  $('.subActionButton').addClass('display');
-	}, function(){
-	  $(this).find('.floatingText').removeClass('show');
-	});
 });
